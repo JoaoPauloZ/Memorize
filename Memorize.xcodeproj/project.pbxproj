@@ -14,6 +14,7 @@
 		2231B48729D91A150003636E /* MemorizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231B48629D91A150003636E /* MemorizeTests.swift */; };
 		2231B49129D91A150003636E /* MemorizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231B49029D91A150003636E /* MemorizeUITests.swift */; };
 		2231B49329D91A150003636E /* MemorizeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231B49229D91A150003636E /* MemorizeUITestsLaunchTests.swift */; };
+		22F7638929E1F5DD003F1EAA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F7638829E1F5DD003F1EAA /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		2231B48C29D91A150003636E /* MemorizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2231B49029D91A150003636E /* MemorizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeUITests.swift; sourceTree = "<group>"; };
 		2231B49229D91A150003636E /* MemorizeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		22F7638829E1F5DD003F1EAA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				2231B47529D91A140003636E /* MemorizeApp.swift */,
 				2231B47729D91A140003636E /* ContentView.swift */,
+				22F7638729E1F5BC003F1EAA /* Views */,
 				2231B47929D91A150003636E /* Assets.xcassets */,
 				2231B47B29D91A150003636E /* Preview Content */,
 			);
@@ -125,6 +128,14 @@
 				2231B49229D91A150003636E /* MemorizeUITestsLaunchTests.swift */,
 			);
 			path = MemorizeUITests;
+			sourceTree = "<group>";
+		};
+		22F7638729E1F5BC003F1EAA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22F7638829E1F5DD003F1EAA /* CardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2231B47829D91A140003636E /* ContentView.swift in Sources */,
+				22F7638929E1F5DD003F1EAA /* CardView.swift in Sources */,
 				2231B47629D91A140003636E /* MemorizeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +432,7 @@
 				DEVELOPMENT_TEAM = 6ZN8T82JC3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.card-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,6 +462,7 @@
 				DEVELOPMENT_TEAM = 6ZN8T82JC3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.card-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
