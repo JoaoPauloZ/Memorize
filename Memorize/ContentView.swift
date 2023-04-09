@@ -9,12 +9,35 @@ import SwiftUI
 
 struct ContentView: View {
 
-    var emojis: [String] = ["🚎", "🚀", "✈️", "🚂", "🚜", "🛸", "🚁", "🚤", "🏍️", "🛶", "⛴️",
-                            "⛵️", "🛩️", "🚃", "🚲", "🛴", "🚠", "🚌", "🛻", "🚚", "🛺", "🚗"]
-    @State var emojiCount = 4
+    let emojisVehicles: [String] = ["🚎", "🚀", "✈️", "🚂", "🚜", "🛸",
+                                    "🚁", "🚤", "🏍️", "🛶","⛴️", "⛵️",
+                                    "🛩️", "🚃", "🚲", "🛴", "🚠", "🚌",
+                                    "🛻", "🚚","🛺", "🚗"]
+
+    let emojisObjects: [String] = ["📺", "🧭", "📻", "🎙️", "🔋", "🔦",
+                                   "⚒️", "🧲", "⛓️", "⚖️", "🪜", "💈",
+                                   "🔭", "🔬", "🪑", "🛌", "🚪", "🗝️",
+                                   "🖼️", "🪄", "🩺", "⚙️", "🔩", "🪚"]
+
+    let emojisFlags: [String]   = ["🇧🇷", "🇦🇴", "🇰🇾", "🇨🇦", "🇧🇬", "🏳️‍🌈",
+                                   "🇨🇱", "🇿🇦", "🇳🇴", "🇳🇱", "🇮🇹", "🇩🇪",
+                                   "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "🇬🇷", "🇪🇸", "🇺🇸", "🇹🇷", "🇱🇹"]
+
+
+    @State var emojis: [String]
+
+    @State var emojiCount = 15
+
+    init() {
+        self.emojis = self.emojisFlags
+    }
 
     var body: some View {
         VStack {
+            Text("Memorize!")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))]) {
                     ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
@@ -26,34 +49,31 @@ struct ContentView: View {
             .foregroundColor(.red)
             Spacer()
             HStack {
-                removeButton
+                buttonFactory("Vehicles", imageName: "car.circle", array: emojisVehicles)
                 Spacer()
-                addButton
+                buttonFactory("Flags", imageName: "flag.circle", array: emojisFlags)
+                Spacer()
+                buttonFactory("Objects", imageName: "lightbulb.circle", array: emojisObjects)
             }
             .font(.largeTitle)
             .padding(.horizontal)
+            .foregroundColor(Color(hue: 0.40, saturation: 0.90, brightness: 0.60))
+
         }
         .padding(.horizontal)
     }
 
-    var removeButton: some View {
-        Button {
-            if emojiCount > 1 {
-                emojiCount -= 1
-            }
+    func buttonFactory(_ text: String, imageName: String, array: [String]) -> some View {
+        let button = Button {
+            emojis = array.shuffled()
+            emojiCount = Int.random(in: 8..<emojis.count)
         } label: {
-            Image(systemName: "minus.circle")
-        }
-    }
-
-    var addButton: some View {
-        Button {
-            if emojiCount < emojis.count {
-                emojiCount += 1
+            VStack {
+                Image(systemName: imageName).fontWeight(.light)
+                Text(text).font(.body)
             }
-        } label: {
-            Image(systemName: "plus.circle")
         }
+        return button
     }
 
 }
