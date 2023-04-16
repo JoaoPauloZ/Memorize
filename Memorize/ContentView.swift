@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var emojiCount = 15
+    @ObservedObject var viewModel: EmojiMemoryGame
 
     var body: some View {
         VStack {
@@ -19,10 +19,13 @@ struct ContentView: View {
 
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))]) {
-//                    ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
-//                        CardView(content: emoji)
-//                            .aspectRatio(2/3, contentMode: .fit)
-//                    }
+                    ForEach(viewModel.cards) { card in
+                        CardView(card: card)
+                            .aspectRatio(2/3, contentMode: .fit)
+                            .onTapGesture {
+                                viewModel.choose(card)
+                            }
+                    }
                 }
             }
             .foregroundColor(.red)
@@ -42,24 +45,12 @@ struct ContentView: View {
         .padding(.horizontal)
     }
 
-    func buttonFactory(_ text: String, imageName: String, array: [String]) -> some View {
-        let button = Button {
-//            emojis = array.shuffled()
-//            emojiCount = Int.random(in: 8..<emojis.count)
-        } label: {
-            VStack {
-                Image(systemName: imageName).fontWeight(.light)
-                Text(text).font(.body)
-            }
-        }
-        return button
-    }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let game = EmojiMemoryGame()
+        ContentView(viewModel: game)
             .previewDevice("iPhone 14 Pro")
     }
 }
