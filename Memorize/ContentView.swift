@@ -13,10 +13,17 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Text("Memorize!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-
+            HStack {
+                Text("\(viewModel.titleName)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Spacer()
+                Button("New Game") {
+                    viewModel.createNewRandomMemoryGame()
+                }
+                .font(.title3)
+                .foregroundColor(viewModel.accentColor)
+            }
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))]) {
                     ForEach(viewModel.cards) { card in
@@ -28,19 +35,14 @@ struct ContentView: View {
                     }
                 }
             }
-            .foregroundColor(.red)
-            Spacer()
+            .foregroundColor(viewModel.accentColor)
             HStack {
-//                buttonFactory("Vehicles", imageName: "car.circle", array: emojisVehicles)
-//                Spacer()
-//                buttonFactory("Flags", imageName: "flag.circle", array: emojisFlags)
-//                Spacer()
-//                buttonFactory("Objects", imageName: "lightbulb.circle", array: emojisObjects)
+                Text("Score: \(viewModel.score)")
+                    .padding()
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
             }
-            .font(.largeTitle)
-            .padding(.horizontal)
-            .foregroundColor(Color(hue: 0.40, saturation: 0.90, brightness: 0.60))
-
         }
         .padding(.horizontal)
     }
@@ -49,7 +51,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let game = EmojiMemoryGame()
+        let game = EmojiMemoryGame(theme: .fruits)
         ContentView(viewModel: game)
             .previewDevice("iPhone 14 Pro")
     }
