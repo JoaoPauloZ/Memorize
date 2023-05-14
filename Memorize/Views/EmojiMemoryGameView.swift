@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift
 //  Memorize
 //
 //  Created by João Paulo Serodio on 01/04/23.
@@ -7,37 +7,37 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
 
-    @ObservedObject var viewModel: EmojiMemoryGame
+    @ObservedObject var game: EmojiMemoryGame
 
     var body: some View {
         VStack {
             HStack {
-                Text("\(viewModel.titleName)")
+                Text("\(game.titleName)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 Spacer()
                 Button("New Game") {
-                    viewModel.createNewRandomMemoryGame()
+                    game.createNewRandomMemoryGame()
                 }
                 .font(.title3)
-                .foregroundColor(viewModel.accentColor)
+                .foregroundColor(game.accentColor)
             }
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))]) {
-                    ForEach(viewModel.cards) { card in
+                    ForEach(game.cards) { card in
                         CardView(card: card)
                             .aspectRatio(2/3, contentMode: .fit)
                             .onTapGesture {
-                                viewModel.choose(card)
+                                game.choose(card)
                             }
                     }
                 }
             }
-            .foregroundColor(viewModel.accentColor)
+            .foregroundColor(game.accentColor)
             HStack {
-                Text("Score: \(viewModel.score)")
+                Text("Score: \(game.score)")
                     .padding()
                     .font(.title)
                     .fontWeight(.bold)
@@ -52,7 +52,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiMemoryGame(theme: .fruits)
-        ContentView(viewModel: game)
+        EmojiMemoryGameView(game: game)
             .previewDevice("iPhone 14 Pro")
     }
 }
